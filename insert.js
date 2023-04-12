@@ -14,7 +14,7 @@ const Assessment = require('./models/Assessment');
 
 conn
   .sync(
-    // {force: true}
+    {force: true}
   )
   .then(() => {
     Permission.findOrCreate({
