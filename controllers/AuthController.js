@@ -155,7 +155,7 @@ module.exports = class UserController {
       infoExtras['recovery'] = recoveryData;
       User.update({infoExtras: JSON.stringify(infoExtras)},{ where: { id: user.id } });
 
-      helpers.sendMail(user.email, 'Recuperação de senha', (req.protocol + '://' + req.get('host') + '/'+ 'nova-senha' + '/'+ user.id + '/' + recoveryData['code']), 1)
+      helpers.sendMail(user.email, 'Recuperação de senha', (req.protocol + 's://' + req.get('host') + '/'+ 'nova-senha' + '/'+ user.id + '/' + recoveryData['code']), 1)
     }
     res.render('auth/recovery', {
       message: 'E-mail de recuperação enviado!',
