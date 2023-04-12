@@ -31,3 +31,7 @@ Execute o comando abaixo para inserção dos dados default do sistema.
 ```
 node insert.js
 ```
+
+Para execução do sistema use o comando
+
+node index.js
