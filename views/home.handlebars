@@ -1,0 +1,68 @@
+<div class="col-md-8">
+  {{#if dataEvent}}
+  <div class="card">
+    <div class="header">
+      <h4 class="title">Próximos Eventos</h4>
+    </div>
+    <div class="content table-responsive table-full-width">
+      <table class="table table-hover table-striped">
+        <thead>
+          <th>Congresso</th>
+          <th>Evento</th>
+          <th>Horário</th>
+          <th>Inscrições</th>
+        </thead>
+        <tbody>
+          {{#each dataEvent}}
+          <tr>
+            <td>{{this.congressName}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.date}}</td>
+            <td>
+              {{#if this.bol_limit}}
+                {{this.countSubscription}}/{{this.limit}}
+              {{else}}
+                {{this.countSubscription}}
+              {{/if}}
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {{/if}}
+  <div class="card">
+    <div class="header">
+      <h4 class="title">Próximos Eventos Inscritos</h4>
+    </div>
+    <div class="content table-responsive table-full-width">
+      <table class="table table-hover table-striped">
+        <thead>
+          <th>Congresso</th>
+          <th>Evento</th>
+          <th>Horário</th>
+        </thead>
+        <tbody>
+          {{#each dataEventSub}}
+          <tr>
+            <td>{{this.congressName}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.date}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="card">
+    <div class="header">
+      <h4 class="title">Buscar por data</h4>
+    </div>
+    <div class="content">
+      <i class="fa fa-calendar" aria-hidden="true" style="font-size: xxx-large" title="Essa funcionalidade ainda não está disponível nessa versão."></i>
+    </div>
+  </div>
+</div>
