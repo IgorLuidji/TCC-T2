@@ -24,7 +24,6 @@ module.exports = class IndexController extends BaseController {
       }
       const { dataSub } = await listSub(controller.user.id);
       controller['dataEventSub'] =  dataSub;
-      console.log(controller)
     } catch (error) {
       console.log(error)
     }
