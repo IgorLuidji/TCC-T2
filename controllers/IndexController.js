@@ -110,7 +110,7 @@ async function list(user = false,where = {date:{[sequelize.Op.gt]: (new Date(Dat
 
 async function listSub(user = false,where = {date:{[sequelize.Op.gt]: (new Date(Date.now()))}}, page = 1, limit = 5){
   if(user){
-    let events = await Subscription.findAll({ raw: true, where:  { UserId: user }, attributes: [sequelize.fn('DISTINCT', sequelize.col('EventId')) ,'EventId']}).then((data) => helpers.formatData(data)).catch(e => console.log(e))
+    let events = await Subscription.findAll({ raw: true, where:  { UserId: user, subscriptionStatus: 1 }, attributes: [sequelize.fn('DISTINCT', sequelize.col('EventId')) ,'EventId']}).then((data) => helpers.formatData(data)).catch(e => console.log(e))
     let even = []
     for(let elem of events ){
       even.push(elem['EventId'])
