@@ -77,8 +77,8 @@ module.exports = class EventController extends BaseController {
       })
       return
     }
-    
-    if(!((new Date(congressData['date'])).getTime() <= (new Date(date)).getTime())){
+
+    if(!((new Date(Date.now())).getTime() < (new Date(date)).getTime())){
       req.flash('message', 'A data de inicio não pode ser menor do que a data atual')
       req.session.save(() => {
         res.redirect('/meus-eventos/congresso/'+ congr +'/novo')
@@ -86,8 +86,24 @@ module.exports = class EventController extends BaseController {
       return
     }
 
-    if(!((new Date(congressData['dateEnd'])).getTime() >= (new Date(dateEnd)).getTime())){
+    if(!((new Date(date)).getTime() < (new Date(dateEnd)).getTime())){
       req.flash('message', 'A data de inicio não pode ser maior do que a data de termino')
+      req.session.save(() => {
+        res.redirect('/meus-eventos/congresso/'+ congr +'/novo')
+      })
+      return
+    }
+    
+    if(!((new Date(congressData['date'])).getTime() <= (new Date(date)).getTime())){
+      req.flash('message', 'A data de inicio não pode ser menor do que o início do Congresso')
+      req.session.save(() => {
+        res.redirect('/meus-eventos/congresso/'+ congr +'/novo')
+      })
+      return
+    }
+
+    if(!((new Date(congressData['dateEnd'])).getTime() >= (new Date(dateEnd)).getTime())){
+      req.flash('message', 'A data de termino não pode ser maior do que o termino do Congresso')
       req.session.save(() => {
         res.redirect('/meus-eventos/congresso/'+ congr +'/novo')
       })
@@ -289,6 +305,22 @@ module.exports = class EventController extends BaseController {
       return
     }
     
+    if(!((new Date(Date.now())).getTime() < (new Date(date)).getTime())){
+      req.flash('message', 'A data de inicio não pode ser menor do que a data atual')
+      req.session.save(() => {
+        res.redirect('/meus-eventos/editar/'+ id)
+      })
+      return
+    }
+
+    if(!((new Date(date)).getTime() < (new Date(dateEnd)).getTime())){
+      req.flash('message', 'A data de inicio não pode ser maior do que a data de termino')
+      req.session.save(() => {
+        res.redirect('/meus-eventos/editar/'+ id)
+      })
+      return
+    }
+
     if(!((new Date(congressData['date'])).getTime() <= (new Date(date)).getTime())){
       req.flash('message', 'A data de inicio não pode ser menor do que a data de inicio do congresso')
       req.session.save(() => {
