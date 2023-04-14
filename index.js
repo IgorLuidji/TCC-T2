@@ -76,6 +76,11 @@ app.get('*', function(req, res){
   res.render('communs/404', {layout: 'error' });
 });
 
+app.use((err,req, res, next) => {
+  console.log(err)
+  res.render('communs/500', {layout: 'error' });
+});
+
 conn
   .sync(
     // {force: true}
